@@ -34,7 +34,7 @@ let numberMask = IMask(input, {
   thousandsSeparator: ' ',
   padFractionalZeros: false,
   normalizeZeros: true,
-  radix: '.',
+  radix: ',',
   mapToRadix: ['.'],
 });
 
@@ -45,7 +45,7 @@ let numberMask1 = IMask(output, {
   thousandsSeparator: ' ',
   padFractionalZeros: false,
   normalizeZeros: true,
-  radix: '.',
+  radix: ',',
   mapToRadix: ['.'],
 
 });
@@ -93,6 +93,7 @@ function api1() {
   fetch(`https://api.exchangerate.host/latest?base=${fromCurrency}&symbols=${toCurrency}`)
     .then(response => response.json())
     .then(data => {
+      input.value=input.value.replace(/,/g,".")
       output.value = input.value.replace(/ /g, "") * Number(data.rates[Object.keys(data.rates)[0]])
       output.value = commify(output.value)
     })
@@ -105,6 +106,7 @@ function api2() {
   fetch(`https://api.exchangerate.host/latest?base=${toCurrency}&symbols=${fromCurrency}`)
     .then(response => response.json())
     .then(data => {
+      output.value=output.value.replace(/,/g,".")
       input.value = output.value.replace(/ /g, "") * Number(data.rates[Object.keys(data.rates)[0]])
       input.value = commify(input.value)
 
