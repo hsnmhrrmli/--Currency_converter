@@ -10,9 +10,13 @@
         text-decoration: none;
         margin-left: 9.89144vw;
         font-family: "roboto";
-        color: #3f3b40;
+        color: white;
+        background-color: #0c1beb;
+        width:61.06134vw;
+        border-radius: 1.05764vw;
+        padding-left: 0.79323vw;
     }
-    
+
     .hamburger {
         position: fixed;
         z-index: 100;
