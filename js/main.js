@@ -21,12 +21,9 @@ menuItems.forEach(
     menuItem.addEventListener("click", toggleMenu);
   }
 )
-
 hamburger.addEventListener("click", toggleMenu);
-
 let input = document.querySelector(".starting")
 let output = document.querySelector(".ending")
-
 let numberMask = IMask(input, {
   mask: Number,
   scale: 5,
@@ -60,8 +57,7 @@ function commify(n) {
   );
 }
 
-let fromCurrency = 'RUB',
-  toCurrency = 'USD'
+let fromCurrency = 'RUB', toCurrency = 'USD'
 input.addEventListener('input', api1)
 output.addEventListener('input', api2)
 
@@ -93,13 +89,11 @@ function api1() {
   fetch(`https://api.exchangerate.host/latest?base=${fromCurrency}&symbols=${toCurrency}`)
     .then(response => response.json())
     .then(data => {
-      if(input.value==""){
-        output.value=""
-      }
-      else{
-      input.value=input.value.replace(/,/g,".")
-      output.value = input.value.replace(/ /g, "") * Number(data.rates[Object.keys(data.rates)[0]])
-      output.value = commify(output.value)
+      if (input.value == "") {
+        output.value = ""
+      } else {
+        output.value = input.value.replace(/ /g, "") * Number(data.rates[Object.keys(data.rates)[0]])
+        output.value = commify(output.value)
       }
     })
     .catch(error => {
@@ -111,19 +105,18 @@ function api2() {
   fetch(`https://api.exchangerate.host/latest?base=${toCurrency}&symbols=${fromCurrency}`)
     .then(response => response.json())
     .then(data => {
-      if(output.value==""){
-        input.value=""
-      }
-      else{
-      output.value=output.value.replace(/,/g,".")
-      input.value = output.value.replace(/ /g, "") * Number(data.rates[Object.keys(data.rates)[0]])
-      input.value = commify(input.value)
+      if (output.value == "") {
+        input.value = ""
+      } else {
+        input.value = output.value.replace(/ /g, "") * Number(data.rates[Object.keys(data.rates)[0]])
+        input.value = commify(input.value)
       }
     })
     .catch(error => {
       console.log(`Error: ${error.message}`);
     })
 }
+
 let p1 = document.getElementById("left")
 let p2 = document.getElementById("right")
 
@@ -146,6 +139,5 @@ function available() {
       console.log(`Error: ${error.message}`);
     })
 }
-
 available()
 api1()
